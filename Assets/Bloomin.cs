@@ -23,15 +23,17 @@ public class Bloomin : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
-            print("Up pressed");
             rigidBody.AddForce(Vector3.up);
             transform.localScale += new Vector3(scale, scale, scale);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            print("Left pressed");
             rigidBody.AddForce(Vector3.left);
+            if(transform.localScale.sqrMagnitude > 2 * 0.5)
+            {
+                transform.localScale -= new Vector3(scale * 2, scale * 2, scale * 2);
+            }
 
         } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
