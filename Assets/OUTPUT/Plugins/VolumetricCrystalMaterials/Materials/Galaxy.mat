@@ -8,8 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Galaxy
   m_Shader: {fileID: 4800000, guid: 4c5b48e76c3e60e4c81e91714d6db20c, type: 3}
-  m_ShaderKeywords: EnableCaustic EnableFresnel EnableInnerLight EnableLayer0 EnableRefraction
-    EnableSpecular EnableSurfaceMask
+  m_ShaderKeywords: EnableCaustic EnableInnerLight EnableLayer0 EnableRefraction EnableSurfaceMask
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -87,16 +86,16 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableCaustic: 1
-    - _EnableFresnel: 1
+    - _EnableFresnel: 0
     - _EnableFresnelUseSkybox: 0
     - _EnableInnerLight: 1
     - _EnableLayer0: 1
     - _EnableLayer1: 1
     - _EnableLayer2: 1
     - _EnableRefraction: 1
-    - _EnableSpecular: 1
+    - _EnableSpecular: 0
     - _EnableSurfaceMask: 1
-    - _FresnelTightness: 7.81
+    - _FresnelTightness: 2.89
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -123,7 +122,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RefractionStrength: 0.795
+    - _RefractionStrength: 0.845
     - _SmoothnessTextureChannel: 0
     - _SpecularBrightness: 0.45
     - _SpecularHighlights: 1
@@ -137,8 +136,8 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColorInside: {r: 0, g: 0.25517225, b: 1, a: 1}
     - _FresnelColorOutside: {r: 1, g: 1, b: 1, a: 1}
-    - _InnerLightColorInside: {r: 1, g: 1, b: 1, a: 1}
-    - _InnerLightColorOutside: {r: 0, g: 0.37931037, b: 1, a: 1}
+    - _InnerLightColorInside: {r: 0, g: 1, b: 0.90622044, a: 1}
+    - _InnerLightColorOutside: {r: 0.11320752, g: 0.03683477, b: 0.008009965, a: 1}
     - _Layer0Tint: {r: 0, g: 1, b: 0.7103448, a: 1}
     - _Layer1Tint: {r: 0, g: 0.5862069, b: 1, a: 1}
     - _Layer2Tint: {r: 0.26206923, g: 0, b: 1, a: 1}

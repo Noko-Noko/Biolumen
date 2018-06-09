@@ -7,15 +7,18 @@ public class Bloomin : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
+    Light light;
 
     [SerializeField] float scaleModifier = 0.0025F;
     [SerializeField] float upforce = 12f;
     [SerializeField] float sideforce = 8f;
+    [SerializeField] float hp = 3f;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        light = GetComponent<Light>();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +34,7 @@ public class Bloomin : MonoBehaviour {
         {
             rigidBody.AddForce(Vector3.up * upforce);
             transform.localScale += new Vector3(scaleModifier, scaleModifier, scaleModifier);
+            light.intensity += 0.01f;
             audioSource.Play();
         }
     }
@@ -44,6 +48,7 @@ public class Bloomin : MonoBehaviour {
             if (transform.localScale.sqrMagnitude > 2 * 0.5)
             {
                 transform.localScale -= new Vector3(scaleModifier * 5, scaleModifier * 5, scaleModifier * 5);
+                light.intensity -= 0.1f;
             }
             //audioSource.Play();
         }
@@ -72,7 +77,23 @@ public class Bloomin : MonoBehaviour {
                 print("Freindly Collission detected");
                 break;
             default:
-                print("Dead!");
+
+                if (hp > 0f)
+                {
+                    hp -= 1f;
+                    if(hp ==2f)
+                    {
+                        light.color = new Color32(151, 82, 233, 1);
+                    } else if(hp ==1f)
+                    {
+                        light.color = new Color32(224, 29, 77, 1);
+                    }
+                    
+                }
+                else
+                {
+                    print("Dead!");
+                }
                 break;
         }
     }
