@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bloomin : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
     Light light;
+
+    enum State { Alive, Dying, Transcending };
+    State state = State.Alive;
 
     [SerializeField] float scaleModifier = 0.0025F;
     [SerializeField] float upforce = 12f;
@@ -19,13 +21,17 @@ public class Bloomin : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         light = GetComponent<Light>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        up();
-        move();
-        deflate();
+        if(state == State.Alive)
+        {
+            up();
+            move();
+            deflate();
+        }
+        
 	}
 
     private void up()
@@ -72,12 +78,19 @@ public class Bloomin : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (state != State.Alive) return;
+
         switch (collision.gameObject.tag) {
             case "Friendly":
                 print("Freindly Collission detected");
                 break;
+            case "Goal":
+                print("Goal reached");
+                state = State.Transcending;
+                //loadNextScene(); --> We Invoke it instead as a corutine
+                Invoke( "LoadNextScene", 1f);
+                break;
             default:
-
                 if (hp > 0f)
                 {
                     hp -= 1f;
@@ -88,13 +101,27 @@ public class Bloomin : MonoBehaviour {
                     {
                         light.color = new Color32(224, 29, 77, 1);
                     }
-                    
                 }
                 else
                 {
                     print("Dead!");
+                    state = State.Dying;
+                    Invoke("Retry", 1f);
                 }
                 break;
         }
     }
+
+    private void LoadNextScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex+1);
+    }
+
+    private void Retry()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
+
 }
