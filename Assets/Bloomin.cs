@@ -6,7 +6,7 @@ public class Bloomin : MonoBehaviour {
 
     Rigidbody rigidBody;
     AudioSource audioSource;
-    Light light;
+    new Light light;
 
     enum State { Alive, Dying, Transcending };
     State state = State.Alive;
@@ -15,6 +15,13 @@ public class Bloomin : MonoBehaviour {
     [SerializeField] float upforce = 12f;
     [SerializeField] float sideforce = 8f;
     [SerializeField] float hp = 3f;
+
+    [SerializeField] AudioClip inflate;
+    [SerializeField] AudioClip swim;
+    [SerializeField] AudioClip start;
+    [SerializeField] AudioClip win;
+    [SerializeField] AudioClip crash;
+    [SerializeField] AudioClip death;
 
     // Use this for initialization
     void Start () {
@@ -25,14 +32,13 @@ public class Bloomin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(state == State.Alive)
+        if (state == State.Alive)
         {
             up();
             move();
             deflate();
         }
-        
-	}
+   	}
 
     private void up()
     {
@@ -41,7 +47,10 @@ public class Bloomin : MonoBehaviour {
             rigidBody.AddForce(Vector3.up * upforce);
             transform.localScale += new Vector3(scaleModifier, scaleModifier, scaleModifier);
             light.intensity += 0.01f;
-            audioSource.Play();
+            //if (!audioSource.isPlaying)
+            //{
+            //    audioSource.PlayOneShot(swim);
+            //}
         }
     }
 
@@ -56,7 +65,6 @@ public class Bloomin : MonoBehaviour {
                 transform.localScale -= new Vector3(scaleModifier * 5, scaleModifier * 5, scaleModifier * 5);
                 light.intensity -= 0.1f;
             }
-            //audioSource.Play();
         }
     }
 
@@ -69,10 +77,19 @@ public class Bloomin : MonoBehaviour {
             {
                 transform.localScale -= new Vector3(scaleModifier, scaleModifier, scaleModifier);
             }
-
+            playMoveSound();
         } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             rigidBody.AddForce(Vector3.right * sideforce);
+            playMoveSound();
+        }
+    }
+
+    private void playMoveSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(swim);
         }
     }
 
@@ -87,24 +104,27 @@ public class Bloomin : MonoBehaviour {
             case "Goal":
                 print("Goal reached");
                 state = State.Transcending;
+                audioSource.PlayOneShot(win);
                 //loadNextScene(); --> We Invoke it instead as a corutine
                 Invoke( "LoadNextScene", 1f);
                 break;
             default:
                 if (hp > 0f)
                 {
-                    hp -= 1f;
-                    if(hp ==2f)
+                    if (hp ==2f)
                     {
                         light.color = new Color32(151, 82, 233, 1);
                     } else if(hp ==1f)
                     {
                         light.color = new Color32(224, 29, 77, 1);
                     }
+                    hp -= 1f;
+                    audioSource.PlayOneShot(crash);
                 }
                 else
                 {
                     print("Dead!");
+                    audioSource.PlayOneShot(death);
                     state = State.Dying;
                     Invoke("Retry", 1f);
                 }

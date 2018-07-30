@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 54241320880140456}
   - component: {fileID: 82276838919009320}
   - component: {fileID: 114624726230354984}
+  - component: {fileID: 108611163404162788}
   m_Layer: 0
   m_Name: Bloomin 1
   m_TagString: Player
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748309207616506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 0.623, z: 0}
+  m_LocalPosition: {x: -20.03, y: 1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861127555305692}
@@ -318,8 +319,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6511ede35fd24d044b7e2fcf29bde2f4, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -404,22 +405,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!108 &108923351616918208
+--- !u!108 &108611163404162788
 Light:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1800601206999124}
+  m_GameObject: {fileID: 1748309207616506}
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.15686275, g: 0.77647066, b: 0.89019614, a: 1}
-  m_Intensity: 3
-  m_Range: 5
+  m_Color: {r: 0.10980392, g: 0.7477892, b: 0.8784314, a: 1}
+  m_Intensity: 8
+  m_Range: 10.78
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -429,6 +430,42 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!108 &108923351616918208
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800601206999124}
+  m_Enabled: 0
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.24350302, g: 0.8029728, b: 0.9056604, a: 1}
+  m_Intensity: 5
+  m_Range: 73.32
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 12100000, guid: af10811b75e7c004fbe62229197c3cc7, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -454,6 +491,13 @@ MonoBehaviour:
   scaleModifier: 0.0025
   upforce: 12
   sideforce: 4
+  hp: 3
+  inflate: {fileID: 8300000, guid: 6511ede35fd24d044b7e2fcf29bde2f4, type: 3}
+  swim: {fileID: 8300000, guid: 6511ede35fd24d044b7e2fcf29bde2f4, type: 3}
+  start: {fileID: 0}
+  win: {fileID: 8300000, guid: 4bbeeab2cc8e83e43a7d3a5e528e093b, type: 3}
+  crash: {fileID: 8300000, guid: ae2909ee2fa96fa408c9deaa2638a886, type: 3}
+  death: {fileID: 8300000, guid: 3dda7b7ca076fe74daa5d1035171f4da, type: 3}
 --- !u!135 &135520235973827438
 SphereCollider:
   m_ObjectHideFlags: 1
